@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import Period from "./Period";
-import { PeriodInformation } from "./PeriodInformation";
 import { v4 as uuidv4 } from 'uuid';
+import PeriodCalculator from "./PeriodCalculator";
+import { Period } from "./Period";
 
 function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
-    const [periodList, setPeriodList] = useState([] as PeriodInformation[]);
+    const [periodList, setPeriodList] = useState([] as Period[]);
     useEffect(() => {
-        console.log('Ahsan')
+        // Load Periods from Local Storage if they exist.
         const periodListFromLocalStorage = JSON.parse(localStorage.getItem('periodList') ?? '[]');
         if (periodListFromLocalStorage.length > 0 && periodList.length === 0) {
-            setPeriodList(periodListFromLocalStorage.map((period:any) => new PeriodInformation({ ...period,startDate: new Date(period.startDate), endDate: new Date(period.endDate) })));
+            setPeriodList(periodListFromLocalStorage.map((period:any) => new Period({ ...period,startDate: new Date(period.startDate), endDate: new Date(period.endDate) })));
         }
     }, [periodList.length]);
     useEffect(() => {
@@ -19,8 +19,8 @@ function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
     return (
         <>
             <button onClick={() => {
-                setPeriodList([...periodList, new PeriodInformation({
-                    name: "Sample Period",
+                setPeriodList([...periodList, new Period({
+                    name: "New Period",
                     id: uuidv4(),
                     startDate: null,
                     endDate: null
@@ -29,8 +29,8 @@ function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2vw', justifyContent: 'center' }}>
                 {
                     periodList.map((period, index) =>
-                        <Period key={index}
-                            periodInfo={period} updatePeriod={(updatePeriodValue: PeriodInformation) => {
+                        <PeriodCalculator key={index}
+                            periodInfo={period} updatePeriod={(updatePeriodValue: Period) => {
                                 let copyList = [...periodList];
                                 copyList[index] = updatePeriodValue;
                                 setPeriodList(copyList)

@@ -1,18 +1,15 @@
 import { useState } from "react";
+import { Period } from "./Period";
 import DatePicker from "react-datepicker";
-import { PeriodInformation } from "./PeriodInformation";
+import { getFormatedStringFromDays } from "../util/utils";
 import "react-datepicker/dist/react-datepicker.css";
 import './Period.css';
 
-function Period({ updatePeriod, deletePeriod, periodInfo }: { updatePeriod: (updatePeriodValue: PeriodInformation) => void, deletePeriod: () => void, periodInfo: PeriodInformation }) {
-  const [periodInformation, setPeriodInformation] = useState<PeriodInformation>(periodInfo);
-  const handleCalendarOpen = () => {
-    document.addEventListener('touchstart', (event: TouchEvent) => {
-      event.stopPropagation();
-    }, true);
-  };
+
+function PeriodCalculator({ updatePeriod, deletePeriod, periodInfo }: { updatePeriod: (updatePeriodValue: Period) => void, deletePeriod: () => void, periodInfo: Period }) {
+  const [periodInformation, setPeriodInformation] = useState<Period>(periodInfo);
   const updatePeriodInformation = () => {
-      setPeriodInformation(new PeriodInformation({ ...periodInformation}));
+      setPeriodInformation(new Period({ ...periodInformation}));
       updatePeriod(periodInformation);
   };
   return (
@@ -32,9 +29,7 @@ function Period({ updatePeriod, deletePeriod, periodInfo }: { updatePeriod: (upd
           startDate={periodInformation.startDate}
           endDate={periodInformation.endDate}
           placeholderText={"Start Date"}
-          closeOnScroll={true}
-          withPortal
-          onCalendarOpen={handleCalendarOpen} />
+          closeOnScroll={true} />
       <div>End Date</div>
         <DatePicker selected={periodInformation.endDate}
           onChange={(date) => {
@@ -46,14 +41,12 @@ function Period({ updatePeriod, deletePeriod, periodInfo }: { updatePeriod: (upd
           selectsEnd
           startDate={periodInformation.startDate}
           endDate={periodInformation.endDate}
-          minDate={periodInformation.startDate}
-          withPortal
-          onCalendarOpen={handleCalendarOpen} />
-      <div>Your time here has been {periodInformation.days}</div> 
+          minDate={periodInformation.startDate} />
+      <div>Your time here has been  {getFormatedStringFromDays(periodInformation.days)}</div> 
       <button onClick={() => deletePeriod()}
         style={{ width: 'fit-content', margin: 'auto' }}>Remove Period</button>
     </div>
   );
 };
 
-export default Period;
+export default PeriodCalculator;
