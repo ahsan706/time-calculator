@@ -26,6 +26,7 @@ function PeriodCalculator({ updatePeriod, deletePeriod, periodInfo }: { updatePe
             updatePeriodInformation();
           }}
           selectsStart
+          dateFormat={"dd/MM/yyyy"}
           startDate={periodInformation.startDate}
           endDate={periodInformation.endDate}
           placeholderText={"Start Date"}
@@ -39,6 +40,7 @@ function PeriodCalculator({ updatePeriod, deletePeriod, periodInfo }: { updatePe
           placeholderText={"End Date"}
           closeOnScroll={true}
           selectsEnd
+          dateFormat={"dd/MM/yyyy"}
           startDate={periodInformation.startDate}
           endDate={periodInformation.endDate}
           minDate={periodInformation.startDate} />
