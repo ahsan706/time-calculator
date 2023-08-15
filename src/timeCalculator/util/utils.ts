@@ -12,13 +12,14 @@ export function getNumberOfDaysBetweenDates(startDate: Date | null, endDate: Dat
     if(numberOfDays === 0){
         return "0 day";
     }else{
-        var years = Math.floor(numberOfDays / 365);
-        var months = Math.floor(numberOfDays % 365 / 30);
-        var days = Math.floor(numberOfDays % 365 % 30);
+        const absDays = Math.abs(numberOfDays);
+        const years = Math.floor(absDays / 365);
+        const months = Math.floor(absDays % 365 / 30);
+        const days = Math.floor(absDays % 365 % 30);
 
-        var yearsDisplay = years > 0 ? years + (years === 1 ? " year, " : " years, ") : "";
-        var monthsDisplay = months > 0 ? months + (months === 1 ? " month, " : " months, ") : "";
-        var daysDisplay = days > 0 ? days + (days === 1 ? " day" : " days") : "";
-        return yearsDisplay + monthsDisplay + daysDisplay; 
+        const yearsDisplay = years > 0 ? years + (years === 1 ? " year, " : " years, ") : "";
+        const monthsDisplay = months > 0 ? months + (months === 1 ? " month, " : " months, ") : "";
+        const daysDisplay = days > 0 ? days + (days === 1 ? " day" : " days") : "";
+        return Math.sign(numberOfDays) === -1 ? "- " : "" +yearsDisplay + monthsDisplay + daysDisplay; 
     }
 }
