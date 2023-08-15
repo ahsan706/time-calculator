@@ -3,26 +3,26 @@ import { getNumberOfDaysBetweenDates } from "../util/utils";
 export class Period {
   name: string;
   id: string;
-  startDate: Date | null;
-  endDate: Date | null;
+  inDate: Date | null;
+  outDate: Date | null;
 
   constructor({
     name,
     id,
-    startDate,
-    endDate,
+    inDate,
+    outDate,
   }: {
     name: string;
     id: string;
-    startDate: Date | null;
-    endDate: Date | null;
+    inDate: Date | null;
+    outDate: Date | null;
   }) {
     this.name = name;
     this.id = id;
-    this.startDate = startDate;
-    this.endDate = endDate;
+    this.inDate = inDate;
+    this.outDate = outDate;
   }
   get days() {
-    return getNumberOfDaysBetweenDates(this.startDate, this.endDate);
+    return getNumberOfDaysBetweenDates(this.inDate, this.outDate);
   }
 }
