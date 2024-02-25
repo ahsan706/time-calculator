@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import PeriodCalculator from "./PeriodCalculator";
 import { Period } from "./Period";
+import { totalDaysFromPeriodList } from "../util/utils";
 
 function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
     const [periodList, setPeriodList] = useState([] as Period[]);
@@ -13,20 +14,20 @@ function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
         }
     }, [periodList.length]);
     useEffect(() => {
-        updateDays(periodList.reduce((a, b) => a + b.days, 0));
+        updateDays(totalDaysFromPeriodList(periodList));
         localStorage.setItem('periodList', JSON.stringify(periodList.filter((period) => period.inDate !== null && period.outDate !== null)));
     }, [periodList, updateDays]);
     return (
         <>
-            <button onClick={() => {
+            <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-4 border border-blue-700 rounded my-2"
+            onClick={() => {
                 setPeriodList([...periodList, new Period({
-                    name: "New Period",
                     id: uuidv4(),
                     inDate: null,
                     outDate: null
                 })]);
-            }} style={{ marginBottom: '1vw', marginTop: '1vw' }}>Add Period</button>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2vw', justifyContent: 'center' }}>
+            }} >Add Period</button>
+            <div className="flex flex-wrap gap-2vw justify-center">
                 {
                     periodList.map((period, index) =>
                         <PeriodCalculator key={index}

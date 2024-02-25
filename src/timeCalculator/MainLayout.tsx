@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Calculator from "./calculator/Calculator";
-import "./MainLayout.css";
-import { getFormatedStringFromDays } from "./util/utils";
+import { getFormatedStringFromDays as getFormattedStringFromDays } from "./util/utils";
 
 
 function MainLayout() {
@@ -10,9 +9,9 @@ function MainLayout() {
     setTotalDays(days);
   };
   return (
-    <div className='mainLayout'>
-      <h1 >Time Calculator</h1>
-      Your time here has been {getFormatedStringFromDays(totalDays)}
+    <div className='flex flex-col items-center'>
+      <h1 className="my-2">Time Calculator</h1>
+      <h2 className="my-2">Your time here has been {getFormattedStringFromDays(totalDays)}</h2>
       <Calculator updateDays={updateDays} />
     </div>
   );
