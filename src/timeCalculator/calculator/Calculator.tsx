@@ -6,6 +6,7 @@ import { totalDaysFromPeriodList } from "../util/utils";
 
 function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
     const [periodList, setPeriodList] = useState([] as Period[]);
+
     useEffect(() => {
         // Load Periods from Local Storage if they exist.
         const periodListFromLocalStorage = JSON.parse(localStorage.getItem('periodList') ?? '[]');
@@ -13,10 +14,12 @@ function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
             setPeriodList(periodListFromLocalStorage.map((period:any) => new Period({ ...period,startDate: new Date(period.startDate), endDate: new Date(period.endDate) })));
         }
     }, [periodList.length]);
+
     useEffect(() => {
         updateDays(totalDaysFromPeriodList(periodList));
         localStorage.setItem('periodList', JSON.stringify(periodList.filter((period) => period.startDate !== null && period.endDate !== null)));
     }, [periodList, updateDays]);
+    
     return (
         <>
             <button className="btn"

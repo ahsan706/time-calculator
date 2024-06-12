@@ -8,13 +8,13 @@ function PeriodCalculator({ updatePeriod, deletePeriod, periodInfo }: { updatePe
   const [periodInformation, setPeriodInformation] = useState<Period>(periodInfo);
 
 const handleValueChange = (newValue:DateValueType) => {
-    console.log("newValue:", newValue);
     if(newValue?.startDate && newValue?.endDate){
       const newPeriod =new Period({...periodInformation,startDate:new Date(newValue?.startDate),endDate:new Date(newValue?.endDate)});
       setPeriodInformation(newPeriod);
       updatePeriod(newPeriod);
     }
 };
+
   return (
     <div className="card bg-base-100 card-bordered shadow-xl w-full sm:w-1/2 md:w-1/4 p-2 flex flex-col gap-4">
       <div>Period</div>

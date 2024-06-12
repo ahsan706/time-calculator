@@ -7,7 +7,7 @@ export function getNumberOfDaysBetweenDates(
   if (startDate && endDate) {
     const timeDifference = endDate.getTime() - startDate.getTime();
     // Convert milliseconds to days (1 day = 24 * 60 * 60 * 1000 milliseconds)
-    const daysDifference = Math.ceil(timeDifference / (24 * 60 * 60 * 1000));
+    const daysDifference = Math.ceil(timeDifference / (86400000));
     return daysDifference;
   } else {
     return 0;
