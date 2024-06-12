@@ -1,11 +1,11 @@
 import { Period } from "../calculator/Period";
 
 export function getNumberOfDaysBetweenDates(
-  inDate: Date | null,
-  outDate: Date | null
+  startDate: Date | null ,
+  endDate: Date | null 
 ) {
-  if (inDate && outDate) {
-    const timeDifference = outDate.getTime() - inDate.getTime();
+  if (startDate && endDate) {
+    const timeDifference = endDate.getTime() - startDate.getTime();
     // Convert milliseconds to days (1 day = 24 * 60 * 60 * 1000 milliseconds)
     const daysDifference = Math.ceil(timeDifference / (24 * 60 * 60 * 1000));
     return daysDifference;
@@ -13,7 +13,8 @@ export function getNumberOfDaysBetweenDates(
     return 0;
   }
 }
-export function getFormatedStringFromDays(numberOfDays: number) {
+
+export function getFormattedStringFromDays(numberOfDays: number) {
   if (numberOfDays === 0) {
     return "0 day";
   } else {
@@ -35,19 +36,14 @@ export function getFormatedStringFromDays(numberOfDays: number) {
     );
   }
 }
+
 export function totalDaysFromPeriodList(periodList: Period[]) {
   let totalDays = 0;
-  let inCountry = true;
   for (let i = 0; i < periodList.length; i++) {
-    if (inCountry) {
       totalDays += getNumberOfDaysBetweenDates(
-        periodList[i].inDate,
-        periodList[i].outDate
+        periodList[i].startDate,
+        periodList[i].endDate
       );
-      inCountry = false;
-    } else {
-      inCountry = true;
-    }
   }
   return totalDays;
 }

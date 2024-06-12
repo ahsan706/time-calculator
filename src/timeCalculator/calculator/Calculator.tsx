@@ -10,24 +10,24 @@ function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
         // Load Periods from Local Storage if they exist.
         const periodListFromLocalStorage = JSON.parse(localStorage.getItem('periodList') ?? '[]');
         if (periodListFromLocalStorage.length > 0 && periodList.length === 0) {
-            setPeriodList(periodListFromLocalStorage.map((period:any) => new Period({ ...period,inDate: new Date(period.inDate), outDate: new Date(period.outDate) })));
+            setPeriodList(periodListFromLocalStorage.map((period:any) => new Period({ ...period,startDate: new Date(period.startDate), endDate: new Date(period.endDate) })));
         }
     }, [periodList.length]);
     useEffect(() => {
         updateDays(totalDaysFromPeriodList(periodList));
-        localStorage.setItem('periodList', JSON.stringify(periodList.filter((period) => period.inDate !== null && period.outDate !== null)));
+        localStorage.setItem('periodList', JSON.stringify(periodList.filter((period) => period.startDate !== null && period.endDate !== null)));
     }, [periodList, updateDays]);
     return (
         <>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-4 border border-blue-700 rounded my-2"
+            <button className="btn"
             onClick={() => {
                 setPeriodList([...periodList, new Period({
                     id: uuidv4(),
-                    inDate: null,
-                    outDate: null
+                    startDate: null,
+                    endDate: null
                 })]);
             }} >Add Period</button>
-            <div className="flex flex-wrap gap-2vw justify-center">
+            <div className="flex flex-wrap justify-center w-full gap-4">
                 {
                     periodList.map((period, index) =>
                         <PeriodCalculator key={index}

@@ -1,52 +1,27 @@
-import { LegacyRef, forwardRef, useState } from "react";
+import { useState } from "react";
 import { Period } from "./Period";
-import DatePicker from "react-datepicker";
-import { getFormatedStringFromDays } from "../util/utils";
-import "react-datepicker/dist/react-datepicker.css";
+import Datepicker, { DateValueType } from "react-tailwindcss-datepicker"; 
+import { getFormattedStringFromDays } from "../util/utils";
 
 
 function PeriodCalculator({ updatePeriod, deletePeriod, periodInfo }: { updatePeriod: (updatePeriodValue: Period) => void, deletePeriod: () => void, periodInfo: Period }) {
   const [periodInformation, setPeriodInformation] = useState<Period>(periodInfo);
-  const updatePeriodInformation = () => {
-    setPeriodInformation(new Period({ ...periodInformation }));
-    updatePeriod(periodInformation);
-  };
-  const CustomDateButton = forwardRef(({ value, onClick }:any, ref:LegacyRef<HTMLButtonElement> ) => (
-    <button className="bg-gray-300 hover:bg-gray-500 text-white border border-gray-500 rounded px-2" onClick={onClick} ref={ref}>
-      {value}
-    </button>
-  ));
+
+const handleValueChange = (newValue:DateValueType) => {
+    console.log("newValue:", newValue);
+    if(newValue?.startDate && newValue?.endDate){
+      const newPeriod =new Period({...periodInformation,startDate:new Date(newValue?.startDate),endDate:new Date(newValue?.endDate)});
+      setPeriodInformation(newPeriod);
+      updatePeriod(newPeriod);
+    }
+};
   return (
-    <div className="flex flex-col gap-1vw mt-1vw mb-1vw md:w-1/4 sm:w-1/2 w-1/2 items-center border-solid border-2 border-blue-600 rounded border-opacity-25 m-2 px-3 py-1 justify-evenly">
-      <div>In Date</div>
-      <DatePicker
-        closeOnScroll={true}
-        dateFormat={"dd/MM/yyyy"}
-        placeholderText={"In Date"}
-        selected={periodInformation.inDate}
-        customInput={<CustomDateButton />}
-        onChange={(date) => {
-          periodInformation.inDate = date;
-          updatePeriodInformation();
-        }}
-        startDate={periodInformation.inDate}
-      />
-      <div>Out Date</div>
-      <DatePicker
-        closeOnScroll={true}
-        dateFormat={"dd/MM/yyyy"}
-        placeholderText={"Out Date"}
-        selected={periodInformation.outDate}
-        customInput={<CustomDateButton />}
-        onChange={(date) => {
-          periodInformation.outDate = date;
-          updatePeriodInformation();
-        }}
-        startDate={periodInformation.outDate}
-      />
-      <div>Your time here has been  {getFormatedStringFromDays(periodInformation.days)}</div>
+    <div className="card bg-base-100 card-bordered shadow-xl w-full sm:w-1/2 md:w-1/4 p-2 flex flex-col gap-4">
+      <div>Period</div>
+      <Datepicker value={periodInformation} onChange={handleValueChange} maxDate={new Date()}  />
+      <div>Your time here has been  {getFormattedStringFromDays(periodInformation.days)}</div>
       <button onClick={() => deletePeriod()}
-        className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-4 border border-blue-700 rounded mt-1">Remove Period</button>
+        className="btn">Remove Period</button>
     </div>
   );
 };
