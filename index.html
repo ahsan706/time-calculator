@@ -1,1 +1,41 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/time-calculator/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><link rel="apple-touch-icon" href="/time-calculator/logo192.png"/><link rel="manifest" href="/time-calculator/manifest.json"/><link href="./output.css" rel="stylesheet"><title>React App</title><script defer="defer" src="/time-calculator/static/js/main.78306803.js"></script><link href="/time-calculator/static/css/main.4b15fbd4.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main App</title>
+</head>
+<body>
+    <h1>Available Apps</h1>
+    <ul id="app-links"></ul>
+
+    <script>
+        // Fetch the JSON file containing app links
+        fetch('/appLinks.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const appLinksElement = document.getElementById('app-links');
+
+                // Iterate over the JSON data and create list items with links
+                data.forEach(app => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = app.url;
+                    link.textContent = app.name;
+                    listItem.appendChild(link);
+                    appLinksElement.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading app links:', error);
+                const appLinksElement = document.getElementById('app-links');
+                appLinksElement.textContent = 'Failed to load app links.';
+            });
+    </script>
+</body>
+</html>
