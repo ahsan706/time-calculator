@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/time-calculator/react-app/static/css/main.e9f11339.css",
-    "main.js": "/time-calculator/react-app/static/js/main.816dfda2.js",
-    "static/js/400.5fd1b4d6.chunk.js": "/time-calculator/react-app/static/js/400.5fd1b4d6.chunk.js",
+    "main.css": "/time-calculator/react-app/static/css/main.3d2a5cd4.css",
+    "main.js": "/time-calculator/react-app/static/js/main.3594f2e8.js",
+    "static/js/14.97407add.chunk.js": "/time-calculator/react-app/static/js/14.97407add.chunk.js",
     "index.html": "/time-calculator/react-app/index.html",
-    "main.e9f11339.css.map": "/time-calculator/react-app/static/css/main.e9f11339.css.map",
-    "main.816dfda2.js.map": "/time-calculator/react-app/static/js/main.816dfda2.js.map",
-    "400.5fd1b4d6.chunk.js.map": "/time-calculator/react-app/static/js/400.5fd1b4d6.chunk.js.map"
+    "main.3d2a5cd4.css.map": "/time-calculator/react-app/static/css/main.3d2a5cd4.css.map",
+    "main.3594f2e8.js.map": "/time-calculator/react-app/static/js/main.3594f2e8.js.map",
+    "14.97407add.chunk.js.map": "/time-calculator/react-app/static/js/14.97407add.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e9f11339.css",
-    "static/js/main.816dfda2.js"
+    "static/css/main.3d2a5cd4.css",
+    "static/js/main.3594f2e8.js"
   ]
 }
