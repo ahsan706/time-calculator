@@ -16,7 +16,7 @@ const handleValueChange = (newValue:DateValueType) => {
 };
 
   return (
-    <div className="card bg-base-100 card-bordered shadow-xl w-full sm:w-1/2 md:w-1/4 p-2 flex flex-col gap-4">
+    <div className="card bg-base-100 card-bordered shadow-xl w-full sm:w-1/2 md:w-1/3 p-2 flex flex-col gap-4">
       <div>Period</div>
       <Datepicker value={periodInformation} onChange={handleValueChange} maxDate={new Date()}  />
       <div>Your time here has been  {getFormattedStringFromDays(periodInformation.days)}</div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main App</title>
+</head>
+<body>
+    <h1>Available Apps</h1>
+    <ul id="app-links"></ul>
+
+    <script>
+        // Fetch the JSON file containing app links
+        fetch('./appLinks.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const appLinksElement = document.getElementById('app-links');
+
+                // Iterate over the JSON data and create list items with links
+                data.forEach(app => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = app.url;
+                    link.textContent = app.name;
+                    listItem.appendChild(link);
+                    appLinksElement.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading app links:', error);
+                const appLinksElement = document.getElementById('app-links');
+                appLinksElement.textContent = 'Failed to load app links.';
+            });
+    </script>
+</body>
+</html>
