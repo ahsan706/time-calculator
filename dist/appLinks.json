@@ -1,9 +1,5 @@
 [
   {
-    "name": "common",
-    "url": "./common/"
-  },
-  {
     "name": "react-app",
     "url": "./react-app/"
   }
