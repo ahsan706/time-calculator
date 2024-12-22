@@ -1,4 +1,4 @@
-import { Period } from "../calculator/Period";
+import { Period } from "../types/Period";
 
 export function getNumberOfDaysBetweenDates(
   startDate: Date | null ,

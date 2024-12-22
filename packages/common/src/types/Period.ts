@@ -1,4 +1,4 @@
-import { getNumberOfDaysBetweenDates } from "../util/utils";
+import { getNumberOfDaysBetweenDates } from "../utils";
 
 export class Period {
   id: string;

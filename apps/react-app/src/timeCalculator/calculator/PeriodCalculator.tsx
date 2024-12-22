@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Period } from "./Period";
+import { Period } from "@time-calculator/common";
 import Datepicker, { DateValueType } from "react-tailwindcss-datepicker"; 
-import { getFormattedStringFromDays } from "../util/utils";
+import { getFormattedStringFromDays } from "@time-calculator/common";
 
 
 function PeriodCalculator({ updatePeriod, deletePeriod, periodInfo }: { updatePeriod: (updatePeriodValue: Period) => void, deletePeriod: () => void, periodInfo: Period }) {

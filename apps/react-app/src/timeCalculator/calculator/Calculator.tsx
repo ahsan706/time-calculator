@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import PeriodCalculator from "./PeriodCalculator";
-import { Period } from "./Period";
-import { totalDaysFromPeriodList } from "../util/utils";
+import { Period } from "@time-calculator/common";
+import { totalDaysFromPeriodList } from "@time-calculator/common";
 
 function Calculator({ updateDays }: { updateDays: (days: number) => void; }) {
     const [periodList, setPeriodList] = useState([] as Period[]);

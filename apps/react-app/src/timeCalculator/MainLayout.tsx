@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Calculator from "./calculator/Calculator";
-import { getFormattedStringFromDays } from "./util/utils";
+import { getFormattedStringFromDays } from "@time-calculator/common";
 
 
 function MainLayout() {
