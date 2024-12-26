@@ -2,5 +2,9 @@
   {
     "name": "react-app",
     "url": "./react-app/"
+  },
+  {
+    "name": "vue-app",
+    "url": "./vue-app/"
   }
 ]
