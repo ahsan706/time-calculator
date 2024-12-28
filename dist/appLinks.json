@@ -4,6 +4,10 @@
     "url": "./react-app/"
   },
   {
+    "name": "svelte-app",
+    "url": "./svelte-app/"
+  },
+  {
     "name": "vue-app",
     "url": "./vue-app/"
   }
