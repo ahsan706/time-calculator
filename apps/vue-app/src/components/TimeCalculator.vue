@@ -75,9 +75,9 @@ export default {
 </script>
 
 <template>
-  <div class="flex justify-center flex-col items-center">
+  <div class="flex w-full flex-col items-center justify-center">
     <button class="btn btn-primary mb-4" @click="addPeriod">Add Period</button>
-    <div class="flex flex-wrap justify-center gap-4">
+    <div class="flex w-full flex-wrap justify-center gap-4">
       <PeriodCalculator
         v-for="(period, index) in periodList"
         :key="period.id"

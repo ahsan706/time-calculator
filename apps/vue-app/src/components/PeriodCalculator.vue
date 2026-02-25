@@ -53,7 +53,7 @@ export default {
 
 <template>
   <div
-    class="card bg-base-100 card-bordered shadow-xl w-full sm:w-1 md:w-1/3 min-w-56 p-2 flex flex-col gap-4"
+    class="card bg-base-100 card-bordered shadow-xl w-full sm:w-1/2 md:w-1/3 p-2 flex flex-col gap-4"
   >
     <div>Period</div>
     <FlatPickr

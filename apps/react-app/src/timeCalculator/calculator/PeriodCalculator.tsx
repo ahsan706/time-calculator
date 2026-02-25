@@ -48,7 +48,7 @@ function PeriodCalculator({
         Your time here has been{" "}
         {getFormattedStringFromDays(periodInformation.days)}
       </div>
-      <button onClick={() => deletePeriod()} className="btn">
+      <button onClick={() => deletePeriod()} className="btn btn-error">
         Remove Period
       </button>
     </div>

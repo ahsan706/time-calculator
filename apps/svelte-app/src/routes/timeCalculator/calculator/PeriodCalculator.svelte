@@ -40,10 +40,8 @@
 	});
 </script>
 
-<div
-	class="card flex w-full flex-col items-center gap-4 rounded-lg border border-gray-200 p-4 shadow-lg sm:w-1/2 md:w-1/3"
->
-	<div class="text-lg font-semibold">Period</div>
+<div class="card bg-base-100 card-bordered shadow-xl w-full sm:w-1/2 md:w-1/3 p-2 flex flex-col gap-4">
+	<div>Period</div>
 
 	<input
 		bind:this={inputEl}
@@ -52,16 +50,9 @@
 		readonly
 	/>
 
-	<div class="text-sm text-gray-600">
-		Your time here has been <span class="font-medium"
-			>{getFormattedStringFromDays(period.days)}</span
-		>
-	</div>
+	<div>Your time here has been {getFormattedStringFromDays(period.days)}</div>
 
-	<button
-		class="rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-		on:click={() => deletePeriod(index)}
-	>
+	<button class="btn btn-error" on:click={() => deletePeriod(index)}>
 		Remove Period
 	</button>
 </div>
