@@ -1,13 +1,12 @@
 <script lang="ts">
-import { ref, watch } from 'vue'
-import Datepicker from '@vuepic/vue-datepicker'
-import '@vuepic/vue-datepicker/dist/main.css'
+import { ref } from 'vue'
+import FlatPickr from 'vue-flatpickr-component'
 import { getFormattedStringFromDays, Period } from '@time-calculator/common'
 
 export default {
   name: 'PeriodCalculator',
   components: {
-    Datepicker,
+    FlatPickr,
   },
   props: {
     periodInfo: {
@@ -17,32 +16,36 @@ export default {
   },
   emits: ['update-period', 'delete-period'],
   setup(props, { emit }) {
-    console.log(
-      'PeriodCalculator setup',
-      new Date(props.periodInfo.startDate),
-      new Date(props.periodInfo.endDate),
-    )
-    // Reactive property for the date range
-    const dateRange = ref<[Date, Date]>([
-      new Date(props.periodInfo.startDate),
-      new Date(props.periodInfo.endDate),
-    ])
+    const dateValue = ref<string>('')
 
-    // Watch for changes in dateRange and emit updates
-    watch(dateRange, ([startDate, endDate]) => {
-      if (startDate && endDate) {
+    if (props.periodInfo.startDate && props.periodInfo.endDate) {
+      const start = new Date(props.periodInfo.startDate).toISOString().split('T')[0]
+      const end = new Date(props.periodInfo.endDate).toISOString().split('T')[0]
+      dateValue.value = `${start} to ${end}`
+    }
+
+    const config = {
+      mode: 'range',
+      maxDate: new Date(),
+      dateFormat: 'Y-m-d',
+    }
+
+    const handleChange = (dates: Date[]) => {
+      if (dates.length === 2) {
         const newPeriod = new Period({
           id: props.periodInfo.id,
-          startDate,
-          endDate,
+          startDate: dates[0],
+          endDate: dates[1],
         })
         emit('update-period', newPeriod)
       }
-    })
+    }
 
     return {
-      dateRange,
-      getFormattedStringFromDays: getFormattedStringFromDays,
+      dateValue,
+      config,
+      handleChange,
+      getFormattedStringFromDays,
     }
   },
 }
@@ -53,14 +56,11 @@ export default {
     class="card bg-base-100 card-bordered shadow-xl w-full sm:w-1 md:w-1/3 min-w-56 p-2 flex flex-col gap-4"
   >
     <div>Period</div>
-    <Datepicker
-      v-model="dateRange"
-      :is-range="true"
-      :max-date="new Date()"
-      :clearable="true"
-      format="MM/dd/yyyy"
-      placeholder="Select date range"
-      range
+    <FlatPickr
+      v-model="dateValue"
+      :config="config"
+      class="input input-bordered w-full"
+      @on-change="handleChange"
     />
     <div>Your time here has been {{ getFormattedStringFromDays(periodInfo.days) }}</div>
     <button @click="$emit('delete-period')" class="btn btn-error">Remove Period</button>

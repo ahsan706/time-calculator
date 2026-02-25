@@ -8,6 +8,6 @@
     "preDeploy": "turbo preDeploy"
   },
   "devDependencies": {
-    "turbo": "^2.0.3"
+    "turbo": "^2.8.11"
   }
 }

@@ -1,48 +1,43 @@
 <script lang="ts">
-	import { DatePicker } from '@svelte-plugins/datepicker';
+	import { onMount, onDestroy } from 'svelte';
+	import flatpickr from 'flatpickr';
+	import type { Instance } from 'flatpickr/dist/types/instance';
 	import { getFormattedStringFromDays, Period } from '@time-calculator/common';
-	import { format } from 'date-fns';
 
-	// Props
 	export let period: Period;
 	export let index: number;
 	export let updatePeriod: (index: number, updatedPeriod: Period) => void;
 	export let deletePeriod: (index: number) => void;
 
-	console.log('period', period);
-	let startDate: Date | null = period.startDate;
-	let endDate: Date | null = period.endDate;
-	let dateFormat = 'MMM d, yyyy';
-	let isOpen = false;
+	let inputEl: HTMLInputElement;
+	let fp: Instance;
 
-	// Reactive formatted dates
-	$: formattedStartDate = startDate ? format(startDate, dateFormat) : '';
-	$: formattedEndDate = endDate ? format(endDate, dateFormat) : '';
+	onMount(() => {
+		const defaultDate = [period.startDate, period.endDate].filter(
+			(d): d is Date => d != null
+		);
 
-	// Previous values for comparison
-	let prevStartDate: Date | null = startDate;
-	let prevEndDate: Date | null = endDate;
+		fp = flatpickr(inputEl, {
+			mode: 'range',
+			maxDate: new Date(),
+			dateFormat: 'Y-m-d',
+			defaultDate,
+			onChange(dates) {
+				if (dates.length === 2) {
+					const updatedPeriod = new Period({
+						id: period.id,
+						startDate: dates[0],
+						endDate: dates[1]
+					});
+					updatePeriod(index, updatedPeriod);
+				}
+			}
+		}) as Instance;
+	});
 
-	// Update the period only if the dates have changed
-	$: if (startDate && endDate) {
-		if (startDate !== prevStartDate || endDate !== prevEndDate) {
-			const updatedPeriod: Period = new Period({
-				id: period.id,
-				startDate: new Date(startDate),
-				endDate: new Date(endDate)
-			});
-			updatePeriod(index, updatedPeriod);
-
-			// Update previous values
-			prevStartDate = startDate;
-			prevEndDate = endDate;
-		}
-	}
-
-	// Toggle date picker visibility
-	const toggleDatePicker = () => {
-		isOpen = !isOpen;
-	};
+	onDestroy(() => {
+		fp?.destroy();
+	});
 </script>
 
 <div
@@ -50,25 +45,12 @@
 >
 	<div class="text-lg font-semibold">Period</div>
 
-	<div class="w-full">
-		<DatePicker bind:isOpen bind:startDate bind:endDate isRange>
-			<button
-				type="button"
-				class="flex w-full items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-white hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-				on:click={toggleDatePicker}
-				aria-expanded={isOpen}
-				aria-haspopup="dialog"
-			>
-				<div class="flex-grow text-sm text-gray-700">
-					{#if startDate && endDate}
-						{formattedStartDate} - {formattedEndDate}
-					{:else}
-						Pick a date
-					{/if}
-				</div>
-			</button>
-		</DatePicker>
-	</div>
+	<input
+		bind:this={inputEl}
+		class="input input-bordered w-full"
+		placeholder="Select date range"
+		readonly
+	/>
 
 	<div class="text-sm text-gray-600">
 		Your time here has been <span class="font-medium"

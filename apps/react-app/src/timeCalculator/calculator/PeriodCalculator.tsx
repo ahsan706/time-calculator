@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Period } from "@time-calculator/common";
-import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
+import Flatpickr from "react-flatpickr";
 import { getFormattedStringFromDays } from "@time-calculator/common";
 
 function PeriodCalculator({
@@ -15,12 +15,12 @@ function PeriodCalculator({
   const [periodInformation, setPeriodInformation] =
     useState<Period>(periodInfo);
 
-  const handleValueChange = (newValue: DateValueType) => {
-    if (newValue?.startDate && newValue?.endDate) {
+  const handleValueChange = (dates: Date[]) => {
+    if (dates.length === 2) {
       const newPeriod = new Period({
         ...periodInformation,
-        startDate: new Date(newValue?.startDate),
-        endDate: new Date(newValue?.endDate),
+        startDate: dates[0],
+        endDate: dates[1],
       });
       setPeriodInformation(newPeriod);
       updatePeriod(newPeriod);
@@ -30,10 +30,19 @@ function PeriodCalculator({
   return (
     <div className="card bg-base-100 card-bordered shadow-xl w-full sm:w-1/2 md:w-1/3 p-2 flex flex-col gap-4">
       <div>Period</div>
-      <Datepicker
-        value={periodInformation}
+      <Flatpickr
+        className="input input-bordered w-full"
+        options={{
+          mode: "range",
+          maxDate: new Date(),
+          dateFormat: "Y-m-d",
+        }}
+        value={
+          [periodInformation.startDate, periodInformation.endDate].filter(
+            Boolean
+          ) as Date[]
+        }
         onChange={handleValueChange}
-        maxDate={new Date()}
       />
       <div>
         Your time here has been{" "}
