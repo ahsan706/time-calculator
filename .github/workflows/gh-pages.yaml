@@ -4,13 +4,20 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
 
     steps:
       - uses: actions/checkout@v4
@@ -20,24 +27,34 @@ jobs:
         with:
           version: "10.30.2"
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
           cache: "pnpm"
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build project
-        run: pnpm run build
+      - name: Build GitHub Pages artifact
+        run: pnpm run build:pages
 
-      - name: PreDeploy project
-        run: pnpm run preDeploy
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
-      - name: Deploy with gh-pages
-        run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
