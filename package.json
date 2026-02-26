@@ -5,7 +5,8 @@
   "packageManager": "pnpm@10.30.2",
   "scripts": {
     "build": "turbo build",
-    "build:pages": "pnpm run build && rm -rf dist && mkdir -p dist && cp -R apps/landing/dist/. dist/ && for app in apps/*; do app_name=$(basename \"$app\"); if [ \"$app_name\" = \"landing\" ]; then continue; fi; if [ -d \"$app/dist\" ]; then mkdir -p \"dist/$app_name\"; cp -R \"$app/dist/.\" \"dist/$app_name/\"; fi; done && touch dist/.nojekyll"
+    "build:pages": "pnpm run build && rm -rf dist && mkdir -p dist && cp -R apps/landing/dist/. dist/ && for app in apps/*; do app_name=$(basename \"$app\"); if [ \"$app_name\" = \"landing\" ]; then continue; fi; if [ -d \"$app/dist\" ]; then mkdir -p \"dist/$app_name\"; cp -R \"$app/dist/.\" \"dist/$app_name/\"; fi; done && touch dist/.nojekyll",
+    "test:e2e": "pnpm --filter @time-calculator/e2e test"
   },
   "devDependencies": {
     "turbo": "^2.8.11"
