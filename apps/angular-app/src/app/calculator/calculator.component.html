@@ -1,0 +1,10 @@
+<button class="btn" (click)="addPeriod()">Add Period</button>
+
+<div class="flex flex-wrap justify-center w-full gap-4">
+  <app-period-calculator
+    *ngFor="let period of periodList; let i = index"
+    [periodInfo]="period"
+    (updatePeriod)="onUpdatePeriod(i, $event)"
+    (deletePeriod)="onDeletePeriod(i)"
+  ></app-period-calculator>
+</div>

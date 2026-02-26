@@ -1,0 +1,5 @@
+<div class="flex justify-center flex-col items-center gap-4 p-2">
+  <h1>Time Calculator</h1>
+  <h2>Your time here has been {{ formattedDays(totalDays) }}</h2>
+  <app-calculator (totalDaysChange)="onTotalDaysChange($event)"></app-calculator>
+</div>

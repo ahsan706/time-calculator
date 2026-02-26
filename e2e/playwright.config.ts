@@ -29,6 +29,13 @@ export default defineConfig({
         baseURL: 'http://localhost:4175',
       },
     },
+    {
+      name: 'angular',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:4176',
+      },
+    },
   ],
   webServer: [
     {
@@ -46,6 +53,12 @@ export default defineConfig({
     {
       command: 'pnpm --filter svelte-app dev --port 4175 --strictPort',
       url: 'http://localhost:4175',
+      reuseExistingServer: true,
+      timeout: 120_000,
+    },
+    {
+      command: 'pnpm --filter @time-calculator/angular-app dev',
+      url: 'http://localhost:4176',
       reuseExistingServer: true,
       timeout: 120_000,
     },

@@ -1,0 +1,33 @@
+{
+  "name": "@time-calculator/angular-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "ng serve --port 4176 --host 0.0.0.0",
+    "build": "ng build --base-href ./",
+    "preview": "npx http-server ./dist -p 4177"
+  },
+  "dependencies": {
+    "@angular/common": "^20.3.0",
+    "@angular/compiler": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.0",
+    "@angular/platform-browser": "^20.3.0",
+    "@angular/platform-browser-dynamic": "^20.3.0",
+    "@time-calculator/common": "workspace:*",
+    "flatpickr": "^4.6.13",
+    "rxjs": "^7.8.2",
+    "uuid": "^13.0.0",
+    "zone.js": "^0.15.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@angular-devkit/build-angular": "^20.3.0",
+    "@angular/cli": "^20.3.0",
+    "@angular/compiler-cli": "^20.3.0",
+    "daisyui": "^5.5.19",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.3"
+  }
+}
