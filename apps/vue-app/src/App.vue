@@ -11,7 +11,7 @@ const updateDays = (updateDays: number) => {
 </script>
 
 <template>
-  <div className="flex justify-center flex-col items-center gap-4 p-2">
+  <div class="flex justify-center flex-col items-center gap-4 p-2">
     <h1>Time Calculator</h1>
     <h2>Your time here has been {{ getFormattedStringFromDays(totalDays) }}</h2>
     <TimeCalculator :updateDays="updateDays" class="shadow-lg p-4 rounded-lg" />
