@@ -9,6 +9,6 @@
     "test:e2e": "pnpm --filter @time-calculator/e2e test"
   },
   "devDependencies": {
-    "turbo": "^2.8.11"
+    "turbo": "^2.8.14"
   }
 }

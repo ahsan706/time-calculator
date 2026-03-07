@@ -9,23 +9,23 @@
     "preview": "npx http-server ./dist -p 4177"
   },
   "dependencies": {
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
-    "@angular/platform-browser": "^20.3.0",
-    "@angular/platform-browser-dynamic": "^20.3.0",
+    "@angular/common": "^21.2.1",
+    "@angular/compiler": "^21.2.1",
+    "@angular/core": "^21.2.1",
+    "@angular/forms": "^21.2.1",
+    "@angular/platform-browser": "^21.2.1",
+    "@angular/platform-browser-dynamic": "^21.2.1",
     "@time-calculator/common": "workspace:*",
     "flatpickr": "^4.6.13",
     "rxjs": "^7.8.2",
     "uuid": "^13.0.0",
-    "zone.js": "^0.15.1"
+    "zone.js": "^0.16.1"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^21.2.1",
+    "@angular/cli": "^21.2.1",
+    "@angular/compiler-cli": "^21.2.1",
     "@tailwindcss/postcss": "^4.2.1",
-    "@angular-devkit/build-angular": "^20.3.0",
-    "@angular/cli": "^20.3.0",
-    "@angular/compiler-cli": "^20.3.0",
     "daisyui": "^5.5.19",
     "tailwindcss": "^4.2.1",
     "typescript": "~5.9.3"
