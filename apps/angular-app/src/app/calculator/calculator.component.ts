@@ -30,7 +30,7 @@ export class CalculatorComponent implements OnInit {
         }),
     );
 
-    this.recalculateAndSave();
+    queueMicrotask(() => this.recalculateAndSave());
   }
 
   addPeriod(): void {
