@@ -35,3 +35,4 @@ pnpm build:pages
 
 - The repo uses `pnpm` workspaces and `turbo` for task orchestration.
 - Production-ready static output for all apps can be assembled with `pnpm build:pages`.
+- Live site on GitHub Pages: https://ahsan706.github.io/time-calculator/
