@@ -14,13 +14,7 @@ test('can add and remove a period card', async ({ page }) => {
   const addPeriodButton = page.getByRole('button', { name: 'Add Period' });
   const removePeriodButtons = page.getByRole('button', { name: 'Remove Period' });
 
-  for (let attempt = 0; attempt < 5; attempt += 1) {
-    await addPeriodButton.click();
-    if ((await removePeriodButtons.count()) > 0) {
-      break;
-    }
-    await page.waitForTimeout(150);
-  }
+  await addPeriodButton.click();
   await expect(removePeriodButtons).toHaveCount(1);
 
   await removePeriodButtons.click();
