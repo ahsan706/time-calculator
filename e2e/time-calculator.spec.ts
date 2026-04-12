@@ -10,6 +10,7 @@ test('renders calculator shell with zero state', async ({ page }) => {
 
 test('can add and remove a period card', async ({ page }) => {
   await page.goto('/');
+  await page.waitForLoadState('networkidle');
 
   const addPeriodButton = page.getByRole('button', { name: 'Add Period' });
   const removePeriodButtons = page.getByRole('button', { name: 'Remove Period' });
