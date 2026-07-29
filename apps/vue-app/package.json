@@ -29,14 +29,14 @@
     "@vue/tsconfig": "^0.9.1",
     "autoprefixer": "^10.4.27",
     "daisyui": "^5.5.19",
-    "eslint": "^10.2.0",
+    "eslint": "^10.8.0",
     "eslint-plugin-vue": "^10.8.0",
     "npm-run-all2": "^8.0.4",
-    "postcss": "^8.5.10",
+    "postcss": "^8.5.24",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.2.2",
     "typescript": "~5.9.3",
-    "vite": "^8.0.5",
+    "vite": "^8.1.5",
     "vite-plugin-vue-devtools": "^8.1.1",
     "vue-tsc": "^3.2.6"
   }
