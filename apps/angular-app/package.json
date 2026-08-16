@@ -9,12 +9,12 @@
     "preview": "npx http-server ./dist -p 4177"
   },
   "dependencies": {
-    "@angular/common": "^21.2.18",
-    "@angular/compiler": "^21.2.18",
-    "@angular/core": "^21.2.18",
-    "@angular/forms": "^21.2.18",
-    "@angular/platform-browser": "^21.2.18",
-    "@angular/platform-browser-dynamic": "^21.2.18",
+    "@angular/common": "^21.2.19",
+    "@angular/compiler": "^21.2.19",
+    "@angular/core": "^21.2.19",
+    "@angular/forms": "^21.2.19",
+    "@angular/platform-browser": "^21.2.19",
+    "@angular/platform-browser-dynamic": "^21.2.19",
     "@time-calculator/common": "workspace:*",
     "flatpickr": "^4.6.13",
     "rxjs": "^7.8.2",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.2.19",
     "@angular/cli": "^21.2.19",
-    "@angular/compiler-cli": "^21.2.18",
+    "@angular/compiler-cli": "^21.2.19",
     "@tailwindcss/postcss": "^4.2.2",
     "daisyui": "^5.5.19",
     "tailwindcss": "^4.2.2",

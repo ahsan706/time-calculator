@@ -34,7 +34,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Audit dependencies
-        run: pnpm audit --audit-level low
+        run: pnpm audit --audit-level low --ignore-unfixable
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5

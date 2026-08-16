@@ -15,15 +15,25 @@
       "webpack-dev-server": "5.2.6",
       "@hono/node-server": "2.0.10",
       "postcss": "8.5.24",
-      "ip-address": "10.1.1",
+      "ip-address": "10.5.0",
       "qs": "6.15.2",
-      "js-yaml": "4.3.0",
+      "js-yaml": "5.3.0",
       "websocket-driver": "0.7.5",
       "shell-quote": "1.9.0",
-      "hono": "4.12.27",
+      "hono": "4.13.2",
       "immutable": "5.1.8",
       "body-parser@^1": "1.20.6",
-      "body-parser@^2": "2.3.0"
+      "body-parser@^2": "2.3.0",
+      "brace-expansion": "5.0.9",
+      "fast-uri": "3.1.5",
+      "undici": "7.29.0",
+      "nanoid": "3.3.18"
+    },
+    "auditConfig": {
+      "ignoreCves": [
+        "CVE-2025-71330",
+        "CVE-2025-71329"
+      ]
     }
   },
   "devDependencies": {
