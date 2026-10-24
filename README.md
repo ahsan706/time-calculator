@@ -14,8 +14,8 @@ This repository contains multiple implementations of the same time calculator ap
 
 ## Prerequisites
 
-- Node.js 20+
-- pnpm 10+
+- Node.js 22.17+
+- pnpm 10.30.2
 
 ## Install
 
@@ -28,6 +28,7 @@ pnpm install
 ```bash
 pnpm build
 pnpm test:e2e
+pnpm test:security
 pnpm build:pages
 ```
 
@@ -36,3 +37,4 @@ pnpm build:pages
 - The repo uses `pnpm` workspaces and `turbo` for task orchestration.
 - Production-ready static output for all apps can be assembled with `pnpm build:pages`.
 - Live site on GitHub Pages: https://ahsan706.github.io/time-calculator/
+- Dependency security changes and patch maintenance: [October 2026 remediation](docs/security-remediation-2026-10.md).
